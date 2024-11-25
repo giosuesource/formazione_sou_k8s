@@ -9,13 +9,18 @@ pipeline {
     }
 
 
-
-
     stages {
+
+ 	stage('Cloning Git') {
+      steps {
+        git 'https://github.com/giosuesource/formazione_sou_k8s/tree/main'
+      }
+    }
+
         stage('build') {
             steps {
                 script {
-                    docker.build (giosuemanzo/flask)
+                    docker.build (“giosuemanzo/flask”)
                 }
             }
         }
@@ -33,4 +38,4 @@ pipeline {
     
 }
 
-// ultima 3
+// ultima 4
