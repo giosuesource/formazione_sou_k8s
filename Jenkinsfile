@@ -1,7 +1,7 @@
 pipeline {
-    agent any
+   agent any
 
-    environment {
+   environment {
   //        DOCKER_CREDENTIAL = 
         DOCKER_IMAGE_NAME = "giosuemanzo/Flask”
         DOCKER_TAG = "latest"
@@ -9,7 +9,7 @@ pipeline {
     }
 
 
-    stages {
+   stages {
 
  	    stage('Cloning Git') {
         steps {
