@@ -13,7 +13,12 @@ pipeline {
 
  	    stage('Cloning Git') {
         steps {
-        git 'https://github.com/giosuesource/formazione_sou_k8s'
+          script{
+            git branch: 'main'
+            credentialsId: 'giosuesource'
+            url: 'https://github.com/giosuesource/formazione_sou_k8s'
+          }
+//        git 'https://github.com/giosuesource/formazione_sou_k8s'
       }
     }
 
