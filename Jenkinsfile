@@ -14,9 +14,7 @@ pipeline {
  	    stage('Cloning Git') {
         steps {
           script{
-            git branch: 'main'
-            git credentialsId: 'giosuesource'
-            git url: 'https://github.com/giosuesource/formazione_sou_k8s'
+            git credentialsId: 'giosuesource’, url: 'https://github.com/giosuesource/formazione_sou_k8s', branch: 'main'
           }
 //        git 'https://github.com/giosuesource/formazione_sou_k8s'
       }
@@ -44,3 +42,4 @@ pipeline {
 }
 
 // ultima 4
+
