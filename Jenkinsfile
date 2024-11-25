@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-//        DOCKER_CREDENTIAL = 
+  //        DOCKER_CREDENTIAL = 
         DOCKER_IMAGE_NAME = "giosuemanzo/Flask”
         DOCKER_TAG = "latest"
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
@@ -11,8 +11,8 @@ pipeline {
 
     stages {
 
- 	stage('Cloning Git') {
-      steps {
+ 	    stage('Cloning Git') {
+        steps {
         git 'https://github.com/giosuesource/formazione_sou_k8s'
       }
     }
