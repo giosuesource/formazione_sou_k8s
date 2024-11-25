@@ -1,11 +1,11 @@
 pipeline {
-  agent any
+    agent any
 
-      environment {
-        DOCKER_CREDENTIAL = 
-        DOCKER_IMAGE_NAME = "giosuemanzo/Flask”
-        DOCKER_TAG = "latest"
-        DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
+    environment {
+//        DOCKER_CREDENTIAL = 
+        DOCKER_IMAGE_NAME = "giosuemanzo/Flask”
+        DOCKER_TAG = "latest"
+        DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
     }
 
 
