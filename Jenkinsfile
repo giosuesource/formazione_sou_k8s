@@ -38,7 +38,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    docker.build("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
+                    docker.build ("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
                 }
             }
         }
