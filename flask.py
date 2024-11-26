@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 # Routes
 @app.route('/')
-def index():
+def hello():
     return “Hello world!”
 
-if __name__ == ‘DevOps':
-   app.run(debug=True)
+if __name__ == ‘__main__':
+    app.run(host='0.0.0.0', port=8000)
