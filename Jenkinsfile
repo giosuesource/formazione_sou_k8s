@@ -1,4 +1,4 @@
-pipeline {
+nvpipeline {
    agent any
 
    environment {
@@ -38,7 +38,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}")
+                    docker.build("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
                 }
             }
         }
