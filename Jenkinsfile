@@ -3,7 +3,11 @@ pipeline {
 
    environment {
         DOCKER_CREDENTIAL = 'password_docker'
+<<<<<<< HEAD
         DOCKER_IMAGE = 'giosuemanzo/flask-app-example'
+=======
+        DOCKER_IMAGE_NAME = 'giosuemanzo/flask-app-example'
+>>>>>>> 69da564 (altre modifiche)
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
 	GIT_CREDENTIAL = 'pass_git'
    }
