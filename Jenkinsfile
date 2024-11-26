@@ -39,7 +39,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
+		    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIAL)
                     docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
                 }
             }
