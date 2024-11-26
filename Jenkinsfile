@@ -24,7 +24,7 @@ pipeline {
 		            docker_tag = ‘latest’
 		         } else if (branch == ‘develop’) {
 			    docker_tag = da_finire e cambiare tutte le virgolette che sono storte
-			 } else if () { 
+			 } else { 
 				docker_tag = "develop-${gitCommit}"
                    }
 		          IMAGE_TAG = docker_tag
