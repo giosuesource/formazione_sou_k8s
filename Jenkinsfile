@@ -32,15 +32,15 @@ pipeline {
     	stage(‘Tag’) {
             steps {
                 script {
-                      def branch = env.BRANCH_NAME
-			if (branch == ‘main’) {
-				docker_tag = ‘latest’
-			} else if (branch == ‘develop’) {
-				docker_tag = da_finire e cambiare tutte le virgolette che sono storte
+                   def branch = env.BRANCH_NAME
+			             if (branch == ‘main’) {
+		            	    	docker_tag = ‘latest’
+		            	} else if (branch == ‘develop’) {
+			                	docker_tag = da_finire e cambiare tutte le virgolette che sono storte
 //			} else if () {
 //				docker_tag = "develop-${gitCommit}"
                 }
-		        IMAGE_TAG = docker_tag
+		          IMAGE_TAG = docker_tag
             }
         }
 
