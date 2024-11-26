@@ -7,7 +7,6 @@ pipeline {
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
     }
 
-//
    stages {
 
  	stage('Checkout') {
