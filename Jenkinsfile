@@ -47,10 +47,10 @@ pipeline {
         stage('push') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'giosuemanzo', variable: 'PassDocker')]) {
-                        sh 'docker login -u giosuemanzo -p ${PassDocker}'
-			sh "docker push giosuesource/flask-app-example:${env.IMAGE_TAG}"
-			sh "docker push giosuesource/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
+                    withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
+                        sh 'docker login -u giosuemanzo -p ${password_docker}'
+			sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
+			sh "docker push giosuemanzo/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
 
                     }
 
