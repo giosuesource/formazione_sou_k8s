@@ -4,7 +4,7 @@ pipeline {
    agent any
 
    environment {
-        DOCKER_CREDENTIAL = '81f61bb2-0ab3-425a-8af0-5fcd728d2889'
+        DOCKER_CREDENTIAL = 'password_docker'
         DOCKER_IMAGE_NAME = "giosuemanzo/flask-app-example”
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
     }
