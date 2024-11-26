@@ -1,5 +1,3 @@
-// da caricare
-
 pipeline {
    agent any
 
@@ -15,25 +13,26 @@ pipeline {
  	stage(‘Checkout’) {
             steps {
 	          	checkout scm
-      }
-    }
+	    }
+        }
 
     	stage(‘Tag’) {
             steps {
                 script {
                    def branch = env.BRANCH_NAME
-			             if (branch == ‘main’) {
-		            	    	docker_tag = ‘latest’
-		            	} else if (branch == ‘develop’) {
-			                	docker_tag = da_finire e cambiare tutte le virgolette che sono storte
-				     } else if () {
+			 if (branch == ‘main’) {
+		            docker_tag = ‘latest’
+		         } else if (branch == ‘develop’) {
+			    docker_tag = da_finire e cambiare tutte le virgolette che sono storte
+		        } else if () { 
 				docker_tag = "develop-${gitCommit}"
-                }
+                   }
 		          IMAGE_TAG = docker_tag
-            }
-	}
+                }
+	   }
 		
- }
+       }
+   }
 
 
 
@@ -51,7 +50,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'giosuemanzo', variable: 'PassDocker')]) {
                         sh 'docker login -u giosuemanzo -p ${PassDocker}'
 			sh “docker push giosuesource/flask-app-example:${env.IMAGE_TAG}”
-//			sh “docker push giosuesource/${DOCKER_IMAGE}:${env.IMAGE_TAG}”
+			sh “docker push giosuesource/${DOCKER_IMAGE}:${env.IMAGE_TAG}”
 
                     }
 
