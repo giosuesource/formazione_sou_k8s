@@ -28,7 +28,7 @@ pipeline {
 			 } else { 
 				docker_tag = 'develop-${gitCommit}'
                    }
-		          def env.IMAGE_TAG = docker_tag
+		          env.IMAGE_TAG = docker_tag
                 }
 	    }
 		
@@ -50,7 +50,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
                         sh 'docker login -u giosuemanzo -p ${password_docker}'
-			sh 'docker push ${DOCKER_IMAGE}:${IMAGE_TAG}'
+			sh 'docker push ${DOCKER_IMAGE}:${env.IMAGE_TAG}'
 
                     }
 
