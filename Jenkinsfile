@@ -39,7 +39,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    docker.build(“${DOCKER_IMAGE}:${IMAGE_TAG}”)
+                    docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}")
                 }
             }
         }
@@ -49,8 +49,8 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'giosuemanzo', variable: 'PassDocker')]) {
                         sh 'docker login -u giosuemanzo -p ${PassDocker}'
-			sh “docker push giosuesource/flask-app-example:${env.IMAGE_TAG}”
-			sh “docker push giosuesource/${DOCKER_IMAGE}:${env.IMAGE_TAG}”
+			sh "docker push giosuesource/flask-app-example:${env.IMAGE_TAG}"
+			sh "docker push giosuesource/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
 
                     }
 
