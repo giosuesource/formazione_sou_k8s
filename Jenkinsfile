@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
 		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
-                    docker.build ("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
+                    docker.build("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         stage('push') {
             steps {
                 script {
-			sh 'docker push ${DOCKER_IMAGE}:${IMAGE_TAG}'
+			sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
                     }
 
                 }
