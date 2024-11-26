@@ -41,7 +41,7 @@ pipeline {
                 script {
 //		    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIAL)
 //                  docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}
+		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
                 }
             }
         }
