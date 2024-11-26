@@ -51,7 +51,8 @@ pipeline {
 //			sh 'docker push ${DOCKER_IMAGE}:${IMAGE_TAG}'
 
 		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
-		    docker.push ("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
+		    sh 'docker push ${DOCKER_IMAGE}:${IMAGE_TAG}'
+//		    docker.push ("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
                     }
 
                 }
