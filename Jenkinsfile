@@ -10,13 +10,13 @@ pipeline {
 //
    stages {
 
- 	stage(‘Checkout’) {
+ 	stage('Checkout') {
             steps {
 	          	checkout scm
 	    }
         }
 
-    	stage(‘Tag’) {
+    	stage('Tag') {
             steps {
                 script {
                    def branch = env.BRANCH_NAME
