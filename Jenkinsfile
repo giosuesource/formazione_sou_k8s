@@ -5,29 +5,18 @@ pipeline {
 
    environment {
         DOCKER_CREDENTIAL = 'password_docker'
-        DOCKER_IMAGE_NAME = "giosuemanzo/flask-app-example”
+        DOCKER_IMAGE_NAME = 'giosuemanzo/flask-app-example'
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
     }
 
 
    stages {
 
- 	     stage(‘Checkout’) {
-          steps {
+ 	stage(‘Checkout’) {
+            steps {
 	          	checkout scm
       }
     }
-
-      stage('Cloning Git') {
-          steps {
-              script{
-                git branch: 'main'
-                git credentialsId: 'giosuesource'
-                git url: 'https://github.com/giosuesource/formazione_sou_k8s'
-              }
-//        git 'https://github.com/giosuesource/formazione_sou_k8s'
-          }
-
 
     	stage(‘Tag’) {
             steps {
@@ -37,12 +26,14 @@ pipeline {
 		            	    	docker_tag = ‘latest’
 		            	} else if (branch == ‘develop’) {
 			                	docker_tag = da_finire e cambiare tutte le virgolette che sono storte
-//			} else if () {
-//				docker_tag = "develop-${gitCommit}"
+				     } else if () {
+				docker_tag = "develop-${gitCommit}"
                 }
 		          IMAGE_TAG = docker_tag
             }
-        }
+	}
+		
+ }
 
 
 
