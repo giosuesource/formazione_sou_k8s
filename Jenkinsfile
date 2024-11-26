@@ -50,7 +50,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
                         sh 'docker login -u giosuemanzo -p ${password_docker}'
-			sh "docker push giosuemanzo/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
+			sh 'docker push giosuemanzo/${DOCKER_IMAGE}:${env.IMAGE_TAG}'
 
                     }
 
