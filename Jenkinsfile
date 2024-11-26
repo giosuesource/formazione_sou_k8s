@@ -28,14 +28,12 @@ pipeline {
 			 } else { 
 				docker_tag = 'develop-${gitCommit}'
                    }
-		          def IMAGE_TAG = docker_tag
+		          env.IMAGE_TAG = docker_tag
                 }
 	    }
 		
         }
    
-
-
 
         stage('build') {
             steps {
