@@ -20,6 +20,7 @@ pipeline {
             steps {
                 script {
                    def branch = env.BRANCH_NAME
+		   def docker_tag = 'latest'
 			 if (branch == 'main') {
 		            docker_tag = 'latest'
 		         } else if (branch == 'develop') {
