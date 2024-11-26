@@ -7,7 +7,7 @@ pipeline {
         DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
     }
 
-
+//
    stages {
 
  	stage(‘Checkout’) {
@@ -24,7 +24,7 @@ pipeline {
 		            docker_tag = ‘latest’
 		         } else if (branch == ‘develop’) {
 			    docker_tag = da_finire e cambiare tutte le virgolette che sono storte
-		        } else if () { 
+			 } else if () { 
 				docker_tag = "develop-${gitCommit}"
                    }
 		          IMAGE_TAG = docker_tag
