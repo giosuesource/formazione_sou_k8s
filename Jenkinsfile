@@ -38,8 +38,9 @@ pipeline {
         stage('build') {
             steps {
                 script {
-		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
+//		    docker.withRegistry('DOCKER_REGISTRY', DOCKER_CREDENTIAL)
                     docker.build("${env.DOCKER_IMAGE}:${env.IMAGE_TAG}")
+		    docker.withRegistry('', DOCKER_CREDENTIAL)
                 }
             }
         }
