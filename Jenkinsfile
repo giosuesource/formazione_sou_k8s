@@ -41,20 +41,21 @@ pipeline {
                 script {
 //		    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIAL)
 //                  docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
+//		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
+		    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG} ."
+
                 }
             }
         }
 
-        stage('push') {
+ 	stage('Push') {
             steps {
-		    withCredentials[string(credentialsId: 'giosuemanzo', variable: 'password_docker')]
-                script {
-			sh "docker push ${DOCKER_IMAGE}:${env.IMAGE_TAG}"
+                withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
+                    script {
+                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
                     }
-
                 }
             }
-      }
-   
+        }
+    }
 }
