@@ -34,7 +34,11 @@ pipeline {
 	    }
 		
         }
-   
+
+	stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
 
         stage('build') {
             steps {
@@ -50,7 +54,8 @@ pipeline {
 
  	stage('Push') {
             steps {
-                withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
+//                withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
+		  withDockerRegistry([credentialsId: 'giosuemanzo', variable: 'password_docker']) {
                     script {
                         sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
                     }
