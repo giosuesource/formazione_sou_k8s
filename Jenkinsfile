@@ -48,7 +48,7 @@ pipeline {
 
         stage('push') {
             steps {
-		    withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')])
+		    withCredentials[string(credentialsId: 'giosuemanzo', variable: 'password_docker')]
                 script {
 			sh "docker push ${DOCKER_IMAGE}:${env.IMAGE_TAG}"
                     }
