@@ -6,7 +6,7 @@ pipeline {
         DOCKER_IMAGE = 'giosuemanzo/flask-app-example'
         //DOCKER_IMAGE_NAME = 'giosuemanzo/flask-app-example'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'	   
-	GIT_CREDENTIAL = 'pass_git'
+	GIT_CREDENTIAL = 'pass_github'
    }
 
    stages {
