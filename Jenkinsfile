@@ -5,7 +5,6 @@ pipeline {
         DOCKER_CREDENTIAL = 'password_docker'
         DOCKER_IMAGE = 'giosuemanzo/flask-app-example'
         //DOCKER_IMAGE_NAME = 'giosuemanzo/flask-app-example'
-//        DOCKER_REGISTRY = 'https://hub.docker.com/u/giosuemanzo'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'	   
 	GIT_CREDENTIAL = 'pass_git'
    }
@@ -46,25 +45,25 @@ pipeline {
         stage('build') {
             steps {
                 script {
-		    docker.withRegistry('', DOCKER_CREDENTIAL)
-                    def image = docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
-		    image.push()
+//		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
+//                  docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
 //		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
-//		    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG} ."
+		    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
 
                 }
             }
         }
 
-// 	stage('Push') {
-//            steps {
+ 	stage('Push') {
+            steps {
 //                withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
 //		  withDockerRegistry([credentialsId: 'giosuemanzo', variable: 'password_docker']) {
-//                    script {
-//                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
-//                    }
-//                }
-//            }
-//        }
+                    script {
+			docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
+                        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
+                    }
+                }
+            }
+        }
     }
 }
