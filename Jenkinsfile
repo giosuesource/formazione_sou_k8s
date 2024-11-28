@@ -41,7 +41,7 @@ pipeline {
 //		    docker.image('docker:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock'){
 		    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
 		    } 
-                }
+                
             }
         }
 
