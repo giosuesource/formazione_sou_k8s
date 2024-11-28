@@ -89,5 +89,5 @@
           JENKINS_URL: "http://192.168.2.2:8080/"
           JENKINS_AGENT_NAME: "ContainerS"
           JENKINS_AGENT_WORKDIR: "/home/jenkins"
-          JENKINS_SECRET: "93d36dba3f4d09398baab7d7930e594c18eaeafcb2774ecc5b36ab4d9d58ad82"
+          JENKINS_SECRET: "jenkins_secret"     #da inserire password
         state: started
