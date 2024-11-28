@@ -45,26 +45,15 @@ pipeline {
         stage('build') {
             steps {
                 script {
-//		    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
-//                  docker.build("${DOCKER_IMAGE}:${env.IMAGE_TAG}")
-//		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
-//		    sh "docker --version"
-//		    sh "apt-get update && apt-get install -y docker.io"
-//		    sh "/usr/bin/docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
-//		    sh "docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker"
-//		    sh "run -d --name ContainerS --volume /var/run/docker.sock:/var/run/docker.sock -ti docker"
-
 		    docker.image('docker:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock'){
 		    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
-		    
+		    } 
                 }
             }
         }
 
  	stage('Push') {
             steps {
-//                withCredentials([string(credentialsId: 'giosuemanzo', variable: 'password_docker')]) {
-//		  withDockerRegistry([credentialsId: 'giosuemanzo', variable: 'password_docker']) {
                     script {
 			docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIAL)
                         sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.IMAGE_TAG}"
