@@ -48,8 +48,9 @@ pipeline {
  	stage('Push') {
             steps {
                     script {
-			docker.withRegistry('https://index.docker.io/v1/', 'password_docker')
+			docker.withRegistry('https://index.docker.io/v1/', 'password_docker'){
                         sh "docker push giosuesource/flask-app-example:${env.IMAGE_TAG}"
+			}
                     }
                 }
             }
