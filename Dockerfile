@@ -6,6 +6,6 @@ COPY . .
 
 EXPOSE 5000  
 
-//RUN pip3 install -r 
+ENTRYPOINT ["python3"]
 
 CMD ["app.py"]
