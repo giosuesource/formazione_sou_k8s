@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
 //		    docker.image('docker:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock'){
-		    sh "docker build -t giosuesource/flask-app-example:${env.IMAGE_TAG}"
+		    sh "docker build -t giosuesource/flask-app-example:${env.IMAGE_TAG} ."
 		    } 
                 
             }
