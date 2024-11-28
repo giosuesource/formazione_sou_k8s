@@ -1,9 +1,10 @@
 pipeline {
-   agent any
-
+  agent {
+        label 'ContainerS'
+  }	    
    environment {
         DOCKER_CREDENTIAL = 'password_docker'
-        DOCKER_IMAGE = 'giosuemanzo/flask-app-example'
+        DOCKER_IMAGE = '/flask-app-example'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'	   
 	GIT_CREDENTIAL = 'pass_github'
    }
