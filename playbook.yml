@@ -89,5 +89,5 @@
           JENKINS_URL: "http://192.168.2.2:8080/"
           JENKINS_AGENT_NAME: "ContainerS"
           JENKINS_AGENT_WORKDIR: "/home/jenkins"
-          JENKINS_SECRET: "3db39339ee5ce2a7ca5e24231a5a63494fccb90294581ebc7dda00d7a69d078d"
+          JENKINS_SECRET: "93d36dba3f4d09398baab7d7930e594c18eaeafcb2774ecc5b36ab4d9d58ad82"
         state: started
