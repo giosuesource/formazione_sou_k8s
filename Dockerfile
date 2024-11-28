@@ -6,6 +6,6 @@ COPY . .
 
 EXPOSE 5000  
 
-RUN pip3 install -r 
+//RUN pip3 install -r 
 
 CMD ["app.py"]
