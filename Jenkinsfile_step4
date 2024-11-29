@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+
+   environment {
+      	GIT_CREDENTIAL = 'pass_github'
+   }
+
+   stages {
+
+ 	stage('Login and Pull') {
+            steps {
+                    script {
+                        git branch: 'main', credentialsId: 'pass_github', url: 'https://github.com/giosuesource/formazione_sou_k8s'
+                        sh "git pull chart main"
+
+		                	}
+                    }
+                }
+       }
+}
+
