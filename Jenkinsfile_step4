@@ -1,6 +1,7 @@
 pipeline {
-  agent any
-
+  agent {
+        label 'ContainerS'
+  }
    environment {
       	GIT_CREDENTIAL = 'pass_github'
    }
