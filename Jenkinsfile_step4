@@ -17,7 +17,7 @@ pipeline {
 	stage('install Helm and K8s') {
             steps {
                 script {
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
+		    sh "apt-get update && apt-get install helm"
 		    } 
 
 	       } 
