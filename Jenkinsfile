@@ -49,7 +49,7 @@ pipeline {
             steps {
                     script {
 			docker.withRegistry('https://index.docker.io/v1/', 'password_docker'){
-                        sh "docker push giosuesource/flask-app-example:${env.IMAGE_TAG}"
+                        sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
 			}
                     }
                 }
