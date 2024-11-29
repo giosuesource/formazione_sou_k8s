@@ -14,7 +14,16 @@ pipeline {
 	    }
         }
 
-	stage('Login and clone') {
+	stage('install Helm and K8s') {
+            steps {
+                script {
+		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
+		    } 
+
+	       } 
+          }
+
+stage('Login and clone') {
             steps {
                     script {
                         //git branch: 'main', credentialsId: 'pass_github', url: 'https://github.com/giosuesource/formazione_sou_k8s'
@@ -24,7 +33,5 @@ pipeline {
 			}
                     }
                 }
-
-       }
+      }
 }
-
