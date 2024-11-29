@@ -38,7 +38,6 @@ pipeline {
         stage('build') {
             steps {
                 script {
-//		    docker.image('docker:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock'){
 		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
 		    } 
                 
