@@ -20,7 +20,7 @@ pipeline {
                         //git url: 'https://github.com/giosuesource/formazione_sou_k8s', branch: 'main'   
                         sh "git pull chart main"
 
-		                	}
+			}
                     }
                 }
 
