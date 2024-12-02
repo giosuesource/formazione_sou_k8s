@@ -92,25 +92,8 @@
           JENKINS_SECRET: "jenkins_secret"     #da inserire password
         state: started
 
-    - name: Adding Kubernetes Repository
-      apt_repository:
-        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
-        state: present
-        filename: kubernetes.list
-
-    - name: Install Kubernetes binaries
-      yum: 
-        name: "{{ packages }}"
-        state: present
-        update_cache: yes
-        vars:
-        packages:
-          - kubelet 
-          - kubeadm 
-          - kubectl
-
-    - name: Install Helm
-      yum:
-        name: helm
-        state: latest
-
+ - name: Install Helm
+    community.docker.docker_container:
+      name: ContainerS
+      command: apt-get install -y helm
+      state: latest
