@@ -21,7 +21,7 @@ pipeline {
             steps {
 
               export KUBECONFIG=var/jenkins_home/config.xml
-              helm upgrade —install flask-app-example charts —namespace ‘formazione_sou’ —set image.tag=latest
+              helm upgrade —install flask-app-example charts —namespace ‘formazione_sou’ -—set image.tag=latest
 
 
                // sh "helm install flask-app-example --namespace=formazione_sou chart/https://github.com/giosuesource/formazione_sou_k8s" 
