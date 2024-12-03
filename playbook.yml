@@ -76,7 +76,7 @@
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
      
-    - name: Create Jenkins Slave Container (ContainerS)
+    - name: Crea Jenkins Slave Container (ContainerS)
       docker_container:
         name: ContainerS
         image: jenkins/inbound-agent
@@ -92,66 +92,38 @@
           JENKINS_SECRET: "jenkins_secret"     #da inserire password
         state: started
         
-          #- name: Step 4 
-          # hosts: ContainerS
-          #  tasks: 
-    - name: Download Helm installation script
-      get_url:
-         url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-         dest: /tmp/get_helm.sh
-         mode: '0755'
-
-    - name: Run Helm installation script
-      command: /tmp/get_helm.sh
-      args:
-        creates: /usr/local/bin/helm
-      register: helm_install_result
-      changed_when: false
-
-    - name: Add /usr/local/bin to PATH
-      lineinfile:
-        path: ~/.bashrc
-        line: 'export PATH=$PATH:/usr/local/bin'
-      when: helm_install_result.rc == 0
-
-    - name: Add Kubernetes apt-key
-      apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        state: present
-
-    - name: Add Kubernetes APT repository
-      apt_repository:
-        repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.asc] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
-        state: present
-        update_cache: yes
-
-    - name: Install Kubelet
-      apt:
-        name: kubelet=1.29.*
-        state: present
-        update_cache: true
-
-    - name: Install Kubeadm
-      apt:
-        name: kubeadm=1.29.*
-        state: present
-
-    - name: Enable the Kubelet service
-      service:
-        name: kubelet
-        enabled: yes
-
-    - name: Install Kubectl
-      apt:
-        name: kubectl=1.29.*
-        state: present
-        force: yes
-
-
-        #    - name: Creazione namespace formazione_sou
-        #      kubernetes.core.k8s:
-        #        name: formazione_sou
-        #        api_version: v1
-        #        kind: Namespace
-        #        state: present
-
+    - name: Install curl in the Jenkins slave container
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "apt-get install -y curl"
+        user: root
+        
+    - name: Scarica kubectl in the Jenkins slave container
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "curl -LO https://dl.k8s.io/release/v1.27.0/bin/linux/amd64/kubectl"
+        user: root
+        
+    - name: Executable
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "chmod +x kubectl"
+        user: root
+        
+    - name: Move
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "mv kubectl /usr/local/bin/"
+        user: root
+        
+    - name: Scarica Helm in the Jenkins slave container and Move
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "curl -L https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o /usr/local/bin/helm"
+        user: root
+        
+    - name: Executable
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "chmod +x /usr/local/bin/helm"
+        user: root
