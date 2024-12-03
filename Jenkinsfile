@@ -5,7 +5,6 @@ pipeline {
 
     environment {
         GIT_CREDENTIAL = 'pass_github'
-        KUBECONFIG = '/var/jenkins_home/.kube/config' 
     }
 
     stages {
