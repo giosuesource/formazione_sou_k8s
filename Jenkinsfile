@@ -1,58 +1,37 @@
 pipeline {
   agent {
         label 'ContainerS'
-  }	    
+  }
    environment {
-        DOCKER_CREDENTIAL = 'password_docker'
-        DOCKER_IMAGE = '/flask-app-example'
-        DOCKER_REGISTRY = 'https://index.docker.io/v1/'	   
-	GIT_CREDENTIAL = 'pass_github'
+      	GIT_CREDENTIAL = 'pass_github'
    }
 
-   stages {
+     stages {
+//
+//	stage('Checkout') {
+//            steps {
+//	          	checkout scm
+//	    }
+//        }
 
- 	stage('Checkout') {
-            steps {
-	          	checkout scm
-	    }
-        }
-
-    	stage('Tag') {
-            steps {
-                script {
-                   def branch = env.BRANCH_NAME
-		   def docker_tag = 'latest'
-			 if (branch == 'main') {
-		            docker_tag = 'latest'
-		         } else if (branch == 'develop') {
-			    docker_tag = 'develop-${sha}'
-			 } else { 
-				docker_tag = 'develop-${gitCommit}'
-                   }
-		          env.IMAGE_TAG = docker_tag
-                }
-	    }
-		
-        }
-
-        stage('build') {
+	stage('install Helm and K8s') {
             steps {
                 script {
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
-		    } 
-                
-            }
+		    sh "apt-get update && apt-get install helm"
+//		    sh "apt-get update && apt-get install -y kubectl"
+		} 
+
+	    } 
         }
 
- 	stage('Push') {
+        stage('Login and clone Helm') {
             steps {
-                    script {
-			docker.withRegistry('https://index.docker.io/v1/', 'password_docker'){
-                        sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
-			}
-                    }
+	        script {
+                     git branch: 'main', credentialsId: 'pass_github', url: 'https://github.com/giosuesource/formazione_sou_k8s'
+                     git url: 'https://github.com/giosuesource/formazione_sou_k8s', branch: 'main'   
+	             sh "git pull chart main"
                 }
             }
-        
-    }
+        }
+     }
 }
