@@ -19,7 +19,7 @@ pipeline {
 
        stage('Deploy Helm chart') {
             steps {
-                sh "helm install flask-app-example --namespace=formazione_sou formazione_sou_k8s/https://github.com/giosuesource/formazione_sou_k8s" 
+                sh "helm install flask-app-example --namespace=formazione_sou chart/https://github.com/giosuesource/formazione_sou_k8s" 
             }
         }
 
