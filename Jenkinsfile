@@ -17,6 +17,13 @@ pipeline {
         }
 
 
+       stage('Deploy Helm chart') {
+            steps {
+                sh "helm install flask-app-example  --namespace formazione_sou" 
+            }
+        }
+
+
 
 
      }
