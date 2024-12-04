@@ -23,7 +23,7 @@ pipeline {
           //          sh 'export KUBECONFIG=/.kube/config'
                     sh 'export KUBECONFIG=/home/jenkins/.kube/config'
                     sh '''
-                        helm upgrade --install  chart/custom --namespace formazione-sou --set image.tag=latest
+                        helm upgrade --install prova  chart/custom/Chart --namespace formazione-sou --set image.tag=latest
                     '''
                 }
             }
