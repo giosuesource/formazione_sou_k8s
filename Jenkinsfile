@@ -20,8 +20,8 @@ pipeline {
         stage('Deploy Helm chart') {
             steps {
                 script {
-                    sh 'export KUBECONFIG=/.kube/config'
-
+          //          sh 'export KUBECONFIG=/.kube/config'
+                    sh 'export KUBECONFIG=/home/jenkins'
                     sh '''
                         helm upgrade --install flask-app-example charts --namespace formazione_sou --set image.tag=latest
                     '''
