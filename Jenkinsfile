@@ -1,58 +1,33 @@
 pipeline {
-  agent {
+    agent {
         label 'ContainerS'
-  }	    
-   environment {
-        DOCKER_CREDENTIAL = 'password_docker'
-        DOCKER_IMAGE = '/flask-app-example'
-        DOCKER_REGISTRY = 'https://index.docker.io/v1/'	   
-	GIT_CREDENTIAL = 'pass_github'
-   }
+    }
 
-   stages {
+    environment {
+        GIT_CREDENTIAL = 'pass_github'
+    }
 
- 	stage('Checkout') {
-            steps {
-	          	checkout scm
-	    }
-        }
+    stages {
 
-    	stage('Tag') {
+        stage('Clone repo') {
             steps {
                 script {
-                   def branch = env.BRANCH_NAME
-		   def docker_tag = 'latest'
-			 if (branch == 'main') {
-		            docker_tag = 'latest'
-		         } else if (branch == 'develop') {
-			    docker_tag = 'develop-${sha}'
-			 } else { 
-				docker_tag = 'develop-${gitCommit}'
-                   }
-		          env.IMAGE_TAG = docker_tag
+                    git branch: 'main', url: 'https://github.com/giosuesource/formazione_sou_k8s', credentialsId: GIT_CREDENTIAL
                 }
-	    }
-		
+            }
         }
 
-        stage('build') {
+        stage('Deploy Helm chart') {
             steps {
                 script {
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
-		    } 
-                
+          //          sh 'export KUBECONFIG=/.kube/config'
+                    sh 'export KUBECONFIG=/home/jenkins/.kube/config'
+                    sh '''
+                        helm upgrade --install custom ./chart/custom  --namespace formazione-sou --set image.tag=latest
+                    '''
+                }
             }
         }
 
- 	stage('Push') {
-            steps {
-                    script {
-			docker.withRegistry('https://index.docker.io/v1/', 'password_docker'){
-                        sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
-			}
-                    }
-                }
-            }
-        
     }
 }
