@@ -85,11 +85,12 @@
             ipv4_address: "192.168.2.3"
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
+          - /usr/bin/docker:/usr/bin/docker
         env:
           JENKINS_URL: "http://192.168.2.2:8080/"
           JENKINS_AGENT_NAME: "ContainerS"
           JENKINS_AGENT_WORKDIR: "/home/jenkins"
-          JENKINS_SECRET: "80acbea52e5aa3db5708e65e8fea02ef8032f7a40f32fcbee910a7173b072e11"     #da inserire password
+          JENKINS_SECRET: "d1049f9ee04c298218806507000823704fc2f306e3c4d9d2777b8dcee0ddcd27"     #da inserire password
         state: started
         
     - name: Install curl in the Jenkins slave container
@@ -126,16 +127,4 @@
       community.docker.docker_container_exec:
         container: ContainerS
         command: "chmod +x /usr/local/bin/helm"
-        user: root
-        
-    - name: fai apt-get update
-      community.docker.docker_container_exec:
-        container: ContainerS
-        command: "apt-get update"
-        user: root
-        
-    - name: Installa Docker sul Container slave
-      community.docker.docker_container_exec:
-        container: ContainerS
-        command: "apt-get -y install docker"
         user: root
