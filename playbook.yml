@@ -137,5 +137,5 @@
     - name: Installa Docker sul Container slave
       community.docker.docker_container_exec:
         container: ContainerS
-        command: "apt-get install docker"
+        command: "apt-get -y install docker"
         user: root
