@@ -128,8 +128,14 @@
         command: "chmod +x /usr/local/bin/helm"
         user: root
         
+    - name: fai apt-get update
+      community.docker.docker_container_exec:
+        container: ContainerS
+        command: "apt-get update"
+        user: root
+        
     - name: Installa Docker sul Container slave
       community.docker.docker_container_exec:
         container: ContainerS
-        command: "apt-get update && apt-get install docker"
+        command: "apt-get install docker"
         user: root
