@@ -38,7 +38,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-		    sh "docker build -t giosuemanzo/flask-app-example:${env.IMAGE_TAG} ."
+		    docker.build("giosuemanzo/${DOCKER_IMAGE}:${env.IMAGE_TAG}")
 		    } 
                 
             }
@@ -51,8 +51,8 @@ pipeline {
                         sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
 			}
                     }
-                }
-            }
+             }
+         }
         
     }
 }
