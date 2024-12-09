@@ -48,7 +48,8 @@ pipeline {
             steps {
                     script {
 			docker.withRegistry('https://index.docker.io/v1/', 'password_docker'){
-                        sh "docker push giosuemanzo/flask-app-example:${env.IMAGE_TAG}"
+          def image = docker.image(${DOCKER_IMAGE}, ${env.IMAGE_TAG})
+          image.push()
 			}
                     }
              }
