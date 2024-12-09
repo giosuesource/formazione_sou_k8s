@@ -61,8 +61,8 @@ service:
 ingress:
   enabled: true
   className: ""
-  annotations: {}
-     kubernetes.io/ingress.class: nginx
+    #  annotations: {}
+    #     kubernetes.io/ingress.class: nginx
   hosts:
     - host: formazionesou.local
       paths:
