@@ -35,7 +35,7 @@ def check_container_probes_and_resources(deployment):
 
     return results
 
-def export_deployment_and_check(deployment_name, namespace="default"):
+def export_deployment_and_check(deployment_name, namespace="formazione-sou"):
     try:
         apps_v1 = authenticate_with_service_account(kubeconfig_path="path_to_your_kubeconfig.yaml")
         
@@ -60,4 +60,4 @@ def export_deployment_and_check(deployment_name, namespace="default"):
         print(f"Errore durante l'esportazione del deployment: {e}")
 
 if __name__ == "__main__":
-    export_deployment_and_check("flask-app-deployment", namespace="default")
+    export_deployment_and_check("flask-app-deployment", namespace="formazione-sou")
