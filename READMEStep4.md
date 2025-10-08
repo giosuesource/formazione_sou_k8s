@@ -1,5 +1,5 @@
 
-# Step. 4
+## Step. 4
 ### Descrizione esercizio:
 
 Lo scopo di questo esercizio è quello di scrivere una pipeline dichiarativa Jenkins che prenda da GIT il repo chart versionato in "formazione_sou_k8s" ed effettui "helm install" sull'instanza K8s locale su namespace "formazione_sou".
