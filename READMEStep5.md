@@ -1,5 +1,5 @@
 
-# Step. 5
+## Step. 5
 ### Descrizione esercizio:
 
 Lo scopo di questo esercizio è quello di scrivere uno script Bash o Python che, autenticandosi tramite un Service Account di tipo "cluster-reader",  esegua un export del Deployment dell'applicazione Flask installata tramite lo Step 4. 
