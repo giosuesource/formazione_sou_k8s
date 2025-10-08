@@ -1,5 +1,5 @@
 
-# Step. 2
+## Step. 2
 ### Descrizione esercizio:
 
 Lo scopo di questo esercizio è quello di creare un Dockerfile app di esempio Flask (Python) che esponga una pagina avente stringa "hello world".
