@@ -1,5 +1,5 @@
 
-# Step. 6
+## Step. 6
 ### Descrizione esercizio:
 
 Lo scopo di questo esercizio è quello di equipaggiare l'istanza Kubernetes di un Ingress Controller Nginx, facendo in modo che l'Helm Chart installi anche l'ingress nginx.
